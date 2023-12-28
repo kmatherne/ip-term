@@ -4,6 +4,7 @@ use serde::Deserialize;
 use std::net::{Ipv4Addr, Ipv6Addr};
 #[macro_use]
 extern crate prettytable;
+use prettytable::{format::Alignment, Cell, Row};
 
 #[derive(Parser)]
 struct Cli {
@@ -14,16 +15,11 @@ struct Cli {
 #[derive(Deserialize, Debug)]
 struct IpInfo {
     query: String,
-    status: String,
     country: String,
-    countryCode: String,
-    region: String,
-    regionName: String,
+    #[serde(rename = "regionName")]
+    region_name: String,
     city: String,
     zip: String,
-    lat: f32,
-    lon: f32,
-    timezone: String,
     isp: String,
     org: String,
 }
@@ -45,16 +41,20 @@ async fn main() -> Result<()> {
     let response = reqwest::get(&req_url).await?;
     let ip_info: IpInfo = response.json().await?;
 
-    let table = table!(
-        ["IP Info"],
+    let mut table = table!(
         ["IP", &ip_info.query],
         ["Country", &ip_info.country],
-        ["Region", &ip_info.regionName],
+        ["Region", &ip_info.region_name],
         ["City", &ip_info.city],
         ["Zip", &ip_info.zip],
         ["ISP", &ip_info.isp],
         ["Organization", &ip_info.org]
     );
+    table.set_titles(Row::new(vec![Cell::new_align(
+        "IP Info",
+        Alignment::CENTER,
+    )
+    .with_hspan(2)]));
 
     table.printstd();
 
