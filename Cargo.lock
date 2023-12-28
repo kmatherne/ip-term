@@ -493,8 +493,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "ip-term"
-version = "0.1.0"
+name = "ipnet"
+version = "2.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f518f335dce6725a761382244631d86cf0ccb2863413590b31338feb467f9c3"
+
+[[package]]
+name = "ipterm"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "clap",
@@ -503,12 +509,6 @@ dependencies = [
  "serde",
  "tokio",
 ]
-
-[[package]]
-name = "ipnet"
-version = "2.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8f518f335dce6725a761382244631d86cf0ccb2863413590b31338feb467f9c3"
 
 [[package]]
 name = "is-terminal"
