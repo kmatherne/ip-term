@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::net::{Ipv4Addr, Ipv6Addr};
 #[macro_use]
 extern crate prettytable;
-use prettytable::{format::Alignment, Cell, Row};
+use prettytable::{format::Alignment, Attr, Cell, Row};
 
 #[derive(Parser)]
 struct Cli {
@@ -54,7 +54,8 @@ async fn main() -> Result<()> {
         "IP Info",
         Alignment::CENTER,
     )
-    .with_hspan(2)]));
+    .with_hspan(2)
+    .with_style(Attr::Bold)]));
 
     table.printstd();
 
