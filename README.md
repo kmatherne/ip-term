@@ -1,3 +1,9 @@
+Install with
+```
+brew tap kmatherne/ipterm
+brew install ipterm
+```
+
 Simple terminal tool that will quickly output basic information about an IP address.
 
 Accepts both Ipv4 and Ipv6
